@@ -1,19 +1,34 @@
-import './App.css';
-import HomePage from './Pages/HomePage';
-import SearchPage from './Pages/SearchPage';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import ScrollManager from './components/ScrollManager';
+import Home from './pages/Home';
+import Kitchen from './pages/Kitchen';
+import Bar from './pages/Bar';
+import NotFound from './pages/NotFound';
 
-function App() {
-  return (
-    <BrowserRouter>
-      <div className="App">
-        <Switch>
-          <Route exact path="/" component={HomePage}></Route>
-          <Route path="/search" component={SearchPage}></Route>
-        </Switch>
-      </div>
-    </BrowserRouter>
-  );
+export function AppRoutes() {
+    return (
+        <>
+            <ScrollManager />
+            <Navbar />
+            <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/kitchen" component={Kitchen} />
+                <Route path="/bar" component={Bar} />
+                {/* Old cocktail-api URL */}
+                <Redirect from="/search" to="/bar" />
+                <Route component={NotFound} />
+            </Switch>
+            <Footer />
+        </>
+    );
 }
 
-export default App;
+export default function App() {
+    return (
+        <BrowserRouter>
+            <AppRoutes />
+        </BrowserRouter>
+    );
+}
