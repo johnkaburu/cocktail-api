@@ -12,7 +12,7 @@ Searches are stored in the URL (`?q=`), so they can be shared and work with the 
 
 ## Setup
 
-Node 14 is required (`react-scripts` 4 does not run on Node 17+ without `NODE_OPTIONS=--openssl-legacy-provider`).
+Works on Node 14 and newer (tested on 14 and 26).
 
 ```bash
 npm install
@@ -28,7 +28,7 @@ npm start                    # http://localhost:3000
 
 ### Deploying
 
-`public/_redirects` sends every path to `index.html` on Netlify, so client-side routes work. Set `REACT_APP_EDAMAM_APP_ID` and `REACT_APP_EDAMAM_APP_KEY` in the host's environment variables; CRA embeds them at build time.
+`vercel.json` (Vercel) and `public/_redirects` (Netlify) send every path to `index.html`, so client-side routes survive a page refresh. Set `REACT_APP_EDAMAM_APP_ID` and `REACT_APP_EDAMAM_APP_KEY` in the host's environment variables, then redeploy; they are embedded at build time.
 
 ## Structure
 
